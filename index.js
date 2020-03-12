@@ -36,11 +36,11 @@ app.post("/", function(req, res) {
             const min_temp = weatherData.main.temp_min;
             const windDirection = weatherData.wind.deg;
             const windSpeed = weatherData.wind.speed;
-            const weatherDescription = weatherData.weather[0].description; 
+            const location = weatherData.name; 
         
             
             // displays the output of the results
-            res.write("<h1>The Max Temperature is " + max_temp + " Degrees and Min Temp is " + min_temp + " Degrees Fahrenheit <h1>");
+            res.write("<h1>For " + location +" the Max Temperature is " + max_temp + " Degrees and Min Temp is " + min_temp + " Degrees Fahrenheit <h1>");
             res.write("Wind Direction is " + windDirection + " degrees with wind speed of " + windSpeed+  " miles/hour");
             res.send();
         });

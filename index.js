@@ -42,6 +42,7 @@ app.post("/", function(req, res) {
             res.write("<h1> The weather is " + weatherDescription + "<h1>");
             res.write("<h2>The Temperature in " + city + " is " + temp + " Degrees Fahrenheit<h2>");
             res.write("Humidity is " + humidity + "% with wind speed of " + windSpeed+  " miles/hour");
+            res.write("<br>")
             res.write("<img src=" + imageURL +">");
             res.send();
         });

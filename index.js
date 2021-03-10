@@ -32,16 +32,20 @@ app.post("/", function(req, res) {
         // gets individual items from Open Weather API
         response.on("data", function(data){
             const weatherData = JSON.parse(data);
-            const max_temp = weatherData.main.temp_max;
-            const min_temp = weatherData.main.temp_min;
-            const windDirection = weatherData.wind.deg;
+            const description = weatherData.weather[0].description;
+            const temp = weatherData.main.temp;
+            const humidity = weatherData.main.humidity;
             const windSpeed = weatherData.wind.speed;
-            const location = weatherData.name; 
-        
-            
+            const cloudiness = weatherData.clouds.all; 
+            const location = weatherData.name;
+            const icon = weatherData.weather[0].icon;
+            const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png"; 
+      
             // displays the output of the results
-            res.write("<h1>For " + location +" the Max Temperature is " + max_temp + " Degrees and Min Temp is " + min_temp + " Degrees Fahrenheit <h1>");
-            res.write("Wind Direction is " + windDirection + " degrees with wind speed of " + windSpeed+  " miles/hour");
+            res.write("<h1>For " + location + " the weather is " + description + "<h1><br>");
+            res.write("<img src=" + imageURL +"> <br>");
+            res.write("Temperature is " + temp + " Degrees Fahrenheit <br>");
+            res.write("Wind Speed is " + windSpeed + " mph<br> " + "Cloudiness is " + cloudiness + "%");
             res.send();
         });
     });
